@@ -6,10 +6,10 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
         <TextView
             android:id="@+id/meme_name"
@@ -18,8 +18,10 @@
 
         <ImageView
             android:id="@+id/meme_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_below="@id/meme_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

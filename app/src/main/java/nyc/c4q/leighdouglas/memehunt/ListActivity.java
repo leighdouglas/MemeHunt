@@ -45,8 +45,10 @@ public class ListActivity extends AppCompatActivity {
             // Iterate cats
             QueryResultIterable<Meme> itr = cupboard().withDatabase(db).query(Meme.class).query();
             for (Meme meme : itr) {
-                listOfMemes.add(meme);
-                Log.d(TAG2, "added a meme");
+                if (meme.getUsedAlready() == 0) {
+                    listOfMemes.add(meme);
+                    Log.d(TAG2, "added a meme");
+                }
             }
             itr.close();
         } catch (Exception e) {

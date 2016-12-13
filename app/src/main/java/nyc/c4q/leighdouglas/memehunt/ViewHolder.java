@@ -6,11 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
-
-/**
- * Created by leighdouglas on 12/6/16.
- */
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     ImageView imgView;
@@ -25,11 +22,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
 
     public void onBind(Meme meme){
-        Log.d(TAG, meme.getUrl());
+       // Log.d(TAG, meme.getUrl());
         txtView.setText(meme.getName());
         //imgView.setImageResource(R.drawable.logo);
-        Picasso.with(itemView.getContext()).load(meme.getUrl()).into(imgView);
-
-
+        //Picasso.with(itemView.getContext()).load(meme.getUrl()).into(imgView);
+        //imgView.setImageResource(R.drawable.logo);
+        Glide.with(itemView.getContext()).load(meme.getUrl()).error(R.drawable.logo).into(imgView);
     }
 }

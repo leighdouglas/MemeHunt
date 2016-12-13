@@ -8,9 +8,9 @@ import nl.qbusict.cupboard.annotation.Column;
 
 public class Meme {
 
-    public Long _id;
-    public String name;
-    public int usedAlready;
+    private Long _id;
+    private String name;
+    private int usedAlready;
 
     @Column("image_url")
     public String url;
