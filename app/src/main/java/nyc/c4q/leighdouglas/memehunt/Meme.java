@@ -7,6 +7,9 @@ import nl.qbusict.cupboard.annotation.Column;
  */
 
 public class Meme {
+    public static String MEME_ID = "meme id";
+    public static final int MEME_UNCOLLECTED = 0;
+    public static final int MEME_COLLECTED = 1;
 
     private Long _id;
     private String name;
@@ -18,14 +21,14 @@ public class Meme {
     public Meme(){
         this.name = "no name";
         this.url = "no url";
-        this.usedAlready = 0;
+        this.usedAlready = Meme.MEME_UNCOLLECTED;
     }
 
     public Meme(String name, String url){
         this.name = name;
         this.url = url;
         //by default, used already is set to false
-        this.usedAlready = 0;
+        this.usedAlready = Meme.MEME_UNCOLLECTED;
     }
 
 
