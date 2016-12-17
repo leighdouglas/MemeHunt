@@ -1,32 +1,57 @@
 package nyc.c4q.leighdouglas.memehunt;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
+
     ImageView imgView;
     TextView txtView;
-    public static String TAG = "ViewHolder";
 
     public ViewHolder(View itemView) {
         super(itemView);
         imgView = (ImageView) itemView.findViewById(R.id.meme_image);
         txtView = (TextView) itemView.findViewById(R.id.meme_name);
+
     }
 
-
-    public void onBind(Meme meme){
-       // Log.d(TAG, meme.getUrl());
+    public void onBind(final Meme meme) {
         txtView.setText(meme.getName());
-        //imgView.setImageResource(R.drawable.logo);
-        //Picasso.with(itemView.getContext()).load(meme.getUrl()).into(imgView);
-        //imgView.setImageResource(R.drawable.logo);
-        Glide.with(itemView.getContext()).load(meme.getUrl()).error(R.drawable.logo).into(imgView);
+
+        Glide
+                .with(itemView.getContext())
+                .load(meme.getUrl())
+                .centerCrop()
+                .error(R.drawable.logo)
+                .into(imgView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ProfileCard profileCard = new ProfileCard(itemView.getContext());
+                profileCard.show();
+                profileCard.setCanceledOnTouchOutside(true);
+                profileCard.textView.setText(meme.getName());
+                if(meme.getName().equalsIgnoreCase("bad pun dog")){
+                    Glide
+                            .with(itemView.getContext())
+                            .load(meme.getUrl())
+                            .centerCrop()
+                            .into(profileCard.textView2);
+                } else {
+                    Glide
+                            .with(itemView.getContext())
+                            .load(meme.getUrl())
+                            .crossFade()
+                            .into(profileCard.textView2);
+                }
+
+            }
+        });
     }
 }

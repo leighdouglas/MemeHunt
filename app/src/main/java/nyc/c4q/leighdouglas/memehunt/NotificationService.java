@@ -65,32 +65,35 @@ public class NotificationService extends IntentService {
             Log.e(TAG, "selectAllMemes: ", e);
         }
 
+        if(listOfMemes.size() != 0) {
+            Long id = listOfMemes.get(random.nextInt(listOfMemes.size())).get_id();
 
-        Long id = listOfMemes.get(random.nextInt(listOfMemes.size())).get_id();
+            intent.putExtra(Meme.MEME_ID, id);
 
-        intent.putExtra(Meme.MEME_ID, id);
-
-        // Turn this into a PendingIntent
-        int requestID = (int) System.currentTimeMillis(); // Unique requestID to differentiate between various notification with same notification ID
-        int flags = PendingIntent.FLAG_CANCEL_CURRENT; // Cancel old intent and create new one
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, intent, flags);
+            // Turn this into a PendingIntent
+            int requestID = (int) System.currentTimeMillis(); // Unique requestID to differentiate between various notification with same notification ID
+            int flags = PendingIntent.FLAG_CANCEL_CURRENT; // Cancel old intent and create new one
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, requestID, intent, flags);
 
 
-        // Attach the pendingIntent to a new notification using setContentIntent
-        Notification notification = new android.support.v7.app.NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.notification_icon)
-                .setContentTitle("You got a new meme!")
-                .setContentText("Click to see more")
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true) // Hides the notification after its been selected
-                .build();
+            // Attach the pendingIntent to a new notification using setContentIntent
+            Notification notification = new android.support.v7.app.NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.notification_icon)
+                    .setContentTitle("You got a new meme!")
+                    .setContentText("Click to see more")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true) // Hides the notification after its been selected
+                    .build();
 
-        // Get the notification manager system service
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            // Get the notification manager system service
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 //      Setting a notification ID allows you to update the notification later on.
-        notificationManager.notify(NOTIFICATION_ID, notification);
-
+            notificationManager.notify(NOTIFICATION_ID, notification);
+        }
 
     }
+
+
+
 }
