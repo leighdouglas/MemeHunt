@@ -53,4 +53,8 @@ public class MemeDatabaseHelper extends SQLiteOpenHelper {
         cupboard().withDatabase(db).put(meme);
     }
 
+    public String getDatabaseName(){
+        return DATABASE_NAME;
+    }
+
 }

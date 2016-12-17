@@ -1,5 +1,7 @@
 package nyc.c4q.leighdouglas.memehunt;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,13 +14,15 @@ import java.util.List;
  * Created by leighdouglas on 12/6/16.
  */
 
-public class MemeAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class MemeAdapter extends RecyclerView.Adapter<ViewHolder> implements View.OnClickListener{
 
     List<Meme> memeData;
     private static String TAG = "Adapter";
+    private Activity activity;
 
-    public MemeAdapter(List<Meme> memeData){
+    public MemeAdapter(List<Meme> memeData, Activity activity){
         this.memeData = memeData;
+        this.activity = activity;
         notifyDataSetChanged();
     }
 
@@ -43,5 +47,12 @@ public class MemeAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void setMemeData(List<Meme> memeData) {
         this.memeData = memeData;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.profile_card);
+
     }
 }

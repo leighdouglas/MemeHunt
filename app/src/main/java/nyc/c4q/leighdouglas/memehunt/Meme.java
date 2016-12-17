@@ -7,6 +7,9 @@ import nl.qbusict.cupboard.annotation.Column;
  */
 
 public class Meme {
+    public static String MEME_ID = "meme id";
+    public static final int MEME_UNCOLLECTED = 0;
+    public static final int MEME_COLLECTED = 1;
 
     private Long _id;
     private String name;
@@ -15,19 +18,18 @@ public class Meme {
     @Column("image_url")
     public String url;
 
-    public Meme(){
+    public Meme() {
         this.name = "no name";
         this.url = "no url";
-        this.usedAlready = 0;
+        this.usedAlready = Meme.MEME_UNCOLLECTED;
     }
 
-    public Meme(String name, String url){
+    public Meme(String name, String url) {
         this.name = name;
         this.url = url;
-        //by default, used already is set to false
-        this.usedAlready = 0;
+        //by default, used already is set to false (or 0 since SQLite databases don't have booleans)
+        this.usedAlready = Meme.MEME_UNCOLLECTED;
     }
-
 
     public Long get_id() {
         return _id;
@@ -43,14 +45,6 @@ public class Meme {
 
     public String getName() {
         return name;
-    }
-
-    public void set_id(Long _id) {
-        this._id = _id;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setUsedAlready(int usedAlready) {
