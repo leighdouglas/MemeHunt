@@ -39,7 +39,7 @@ public class ListActivity extends AppCompatActivity {
                 new ColorDrawable(Color.parseColor("#FF677589"))
         );
 
-        launchTestService();
+        //launchTestService();
 
         Intent intent = getIntent();
 
