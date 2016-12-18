@@ -14,6 +14,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class ListActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private RecyclerView rv;
     private MemeAdapter memeAdapter;
+    private TextView noMemes;
 
 
     @Override
@@ -52,11 +55,13 @@ public class ListActivity extends AppCompatActivity {
         collectMeme(intent.getLongExtra(Meme.MEME_ID, 0), db);
 
         memeAdapter = new MemeAdapter(memeList(), this);
-
+        noMemes = (TextView) findViewById(R.id.no_memes);
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new GridLayoutManager(this, 3));
         rv.setAdapter(memeAdapter);
-
+        if(memeAdapter.getItemCount() != 0){
+            noMemes.setVisibility(View.GONE);
+        }
     }
 
     private List<Meme> memeList() {

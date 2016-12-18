@@ -43,6 +43,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
                             .with(itemView.getContext())
                             .load(meme.getUrl())
                             .centerCrop()
+                            .crossFade()
                             .into(profileCard.imageView);
                 } else {
                     Glide
