@@ -9,9 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
-
-import java.util.List;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -24,7 +21,8 @@ public class ProfileCard extends Dialog {
     TextView textView;
     ImageView imageView;
     EditText editText;
-    Button button;
+    Button saveButton;
+    Button cancelButton;
     Meme meme;
     private SQLiteDatabase db;
 
@@ -51,8 +49,10 @@ public class ProfileCard extends Dialog {
         imageView = (ImageView) findViewById(R.id.meme_image);
         editText = (EditText) findViewById(R.id.edit_name);
         editText.setVisibility(View.GONE);
-        button = (Button) findViewById(R.id.save_button);
-        button.setVisibility(View.GONE);
+        saveButton = (Button) findViewById(R.id.save_button);
+        saveButton.setVisibility(View.GONE);
+        cancelButton = (Button) findViewById(R.id.cancel_button);
+        cancelButton.setVisibility(View.GONE);
         getWindow().setLayout(1000, 1000);
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -60,20 +60,22 @@ public class ProfileCard extends Dialog {
             public void onClick(View view) {
                 textView.setVisibility(View.GONE);
                 editText.setVisibility(View.VISIBLE);
-                button.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.VISIBLE);
+                cancelButton.setVisibility(View.VISIBLE);
 
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 String newName = editText.getText().toString();
                 editText.setVisibility(View.GONE);
                 textView.setVisibility(View.VISIBLE);
-                button.setVisibility(View.GONE);
-
+                saveButton.setVisibility(View.GONE);
+                cancelButton.setVisibility(View.GONE);
+                
                 MemeDatabaseHelper dbHelper = MemeDatabaseHelper.getInstance(getContext());
                 db = dbHelper.getWritableDatabase();
                 if (!newName.equalsIgnoreCase("")) {
@@ -86,6 +88,16 @@ public class ProfileCard extends Dialog {
                             .withDatabase(db)
                             .put(mMeme);
                 }
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.setVisibility(View.GONE);
+                textView.setVisibility(View.VISIBLE);
+                saveButton.setVisibility(View.GONE);
+                cancelButton.setVisibility(View.GONE);
             }
         });
     }

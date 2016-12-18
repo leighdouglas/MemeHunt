@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="nyc.c4q.leighdouglas.memehunt.ListActivity"
     android:background="#EDE7F6">
+<TextView
+    android:id="@+id/no_memes"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="You have no memes!"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
