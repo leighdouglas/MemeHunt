@@ -16,5 +16,6 @@ public class MemeAlarmReceiver extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, NotificationService.class);
         context.startService(i);
+
     }
 }
