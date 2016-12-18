@@ -90,6 +90,7 @@ public class NotificationService extends IntentService {
 
 //      Setting a notification ID allows you to update the notification later on.
             notificationManager.notify(NOTIFICATION_ID, notification);
+
         }
 
     }

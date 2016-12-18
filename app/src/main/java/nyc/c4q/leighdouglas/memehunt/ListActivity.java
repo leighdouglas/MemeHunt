@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -36,10 +37,10 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#FF677589"))
+                new ColorDrawable(Color.parseColor("#689F38"))
         );
 
-        //launchTestService();
+        launchTestService();
 
         Intent intent = getIntent();
 
@@ -99,5 +100,19 @@ public class ListActivity extends AppCompatActivity {
     public void launchTestService() {
         Intent i = new Intent(this, NotificationService.class);
         startService(i);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            rv.setLayoutManager(new GridLayoutManager(this, 4));
+        } if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            rv.setLayoutManager(new GridLayoutManager(this, 3));
+        }
+    }
+
+    public MemeAdapter getMemeAdapter() {
+        return memeAdapter;
     }
 }

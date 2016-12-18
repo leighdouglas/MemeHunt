@@ -1,5 +1,6 @@
 package nyc.c4q.leighdouglas.memehunt;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,33 +26,34 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         Glide
                 .with(itemView.getContext())
                 .load(meme.getUrl())
-                .centerCrop()
-                .error(R.drawable.logo)
+                .crossFade()
                 .into(imgView);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ProfileCard profileCard = new ProfileCard(itemView.getContext());
+                ProfileCard profileCard = new ProfileCard(itemView.getContext(), meme);
                 profileCard.show();
                 profileCard.setCanceledOnTouchOutside(true);
                 profileCard.textView.setText(meme.getName());
-                if(meme.getName().equalsIgnoreCase("bad pun dog")){
+                profileCard.editText.setHint(meme.getName());
+                if (meme.getName().equalsIgnoreCase("bad pun dog")) {
                     Glide
                             .with(itemView.getContext())
                             .load(meme.getUrl())
                             .centerCrop()
-                            .into(profileCard.textView2);
+                            .into(profileCard.imageView);
                 } else {
                     Glide
                             .with(itemView.getContext())
                             .load(meme.getUrl())
                             .crossFade()
-                            .into(profileCard.textView2);
+                            .into(profileCard.imageView);
                 }
 
             }
         });
     }
 }
+
