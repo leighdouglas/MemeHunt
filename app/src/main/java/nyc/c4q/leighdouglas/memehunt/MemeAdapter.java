@@ -3,12 +3,13 @@ package nyc.c4q.leighdouglas.memehunt;
 import android.app.Activity;
 import android.app.Dialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import nyc.c4q.leighdouglas.memehunt.model.Meme;
 
 /**
  * Created by leighdouglas on 12/6/16.

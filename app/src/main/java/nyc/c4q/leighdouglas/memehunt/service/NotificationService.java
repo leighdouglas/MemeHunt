@@ -1,4 +1,4 @@
-package nyc.c4q.leighdouglas.memehunt;
+package nyc.c4q.leighdouglas.memehunt.service;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Random;
 
 import nl.qbusict.cupboard.QueryResultIterable;
+import nyc.c4q.leighdouglas.memehunt.ListActivity;
+import nyc.c4q.leighdouglas.memehunt.MemeDatabaseHelper;
+import nyc.c4q.leighdouglas.memehunt.R;
+import nyc.c4q.leighdouglas.memehunt.model.Meme;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 

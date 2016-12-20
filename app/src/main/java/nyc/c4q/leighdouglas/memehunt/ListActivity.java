@@ -1,8 +1,5 @@
 package nyc.c4q.leighdouglas.memehunt;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.qbusict.cupboard.QueryResultIterable;
+import nyc.c4q.leighdouglas.memehunt.model.Meme;
+import nyc.c4q.leighdouglas.memehunt.service.NotificationService;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
@@ -120,4 +118,5 @@ public class ListActivity extends AppCompatActivity {
     public MemeAdapter getMemeAdapter() {
         return memeAdapter;
     }
+
 }
