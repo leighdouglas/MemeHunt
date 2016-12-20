@@ -1,4 +1,4 @@
-package nyc.c4q.leighdouglas.memehunt;
+package nyc.c4q.leighdouglas.memehunt.model;
 
 import nl.qbusict.cupboard.annotation.Column;
 

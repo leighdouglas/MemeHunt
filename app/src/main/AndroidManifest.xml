@@ -19,16 +19,16 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".NotificationService"
+            android:name=".service.NotificationService"
             android:exported="false" />
-        <receiver android:name=".BootBroadCastReceiver">
+        <receiver android:name=".service.BootBroadCastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".MemeAlarmReceiver"
+            android:name=".service.MemeAlarmReceiver"
             android:process=":remote" >
         </receiver>
     </application>
